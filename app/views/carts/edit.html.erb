@@ -1,0 +1,34 @@
+<%
+   number=[1,2,3,4,5,6,7,8,9,10]
+   cart_number = session[:cart_number]
+%>
+<h1>Cart</h1>
+<% unless session[:cart].nil? %>
+<%= form_for(:orders , url: checkcart_path) do |f| %>
+<table width="100%" border="0">
+  <tr>
+    <th width="45%" style="text-align: left;padding-left: 5px">Name</th>
+    <th width="10%">Number</th>
+    <th width="35%"></th>
+  </tr>
+  <div class='list-product'>
+    <% session[:cart].each do |product_id| %>
+        <tr>
+          <td style="padding: 5px"><%= link_to Product.find(product_id).name, product_path(product_id)  %></td>
+          <td>
+            <%=
+                if cart_number.nil?
+                  select("orders", product_id, number )
+                else
+                    select("orders", product_id, number ,:selected => cart_number[product_id])
+                end
+            %>
+          </td>
+          <td align="right"><%= link_to "", cart_path(product_id), confirm: 'Are you sure?',class: "icon-remove-sign"  ,method: :delete %></td>
+        </tr>
+    <% end %>
+  </div>
+</table>
+    <%= f.submit "Check Cart" %>
+<% end %>
+<% end %>

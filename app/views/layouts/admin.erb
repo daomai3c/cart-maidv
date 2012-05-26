@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= render 'layouts/shim' %>
+</head>
+<body>
+<%= render "layouts/header" %>
+<div class="container">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <%= render "layouts/leftcolumn_admin" %>
+      </div>
+      <div class="span10">
+        <div class="main_content">
+          <% flash.each do |key,value| %>
+              <div class="alert alert-<%=key%>"><%=value%></div>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <%= render "layouts/footer" %>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<% catalogs=Catalog.all %>
+<ul class="nav nav-tabs nav-stacked">
+    <li><%= link_to "Home", root_path %></li>
+    <% catalogs.each do |catalog| %>
+            <li><%= link_to catalog.name , catalog ,class: 'catalog'%></li>
+    <% end %>
+</ul>

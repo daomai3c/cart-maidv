@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Name:</b>
+  <%= @catalog.name %>
+</p>
+
+<table width="100%" border="0">
+  <tr>
+    <th width="90%" style="text-align: left;padding-left: 5px">Name</th>
+    <th width="5%"></th>
+  </tr>
+  <div class='list-product'>
+    <% @products.each do |product| %>
+        <tr>
+          <td style="padding: 5px"><%= link_to product.name, product  %></td>
+          <td><%= link_to "",edit_cart_path(product),class: "icon-edit " %></td>
+        </tr>
+    <% end %>
+  </div>
+</table>
+<%= will_paginate(@products) %>

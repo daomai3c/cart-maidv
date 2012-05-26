@@ -1,0 +1,6 @@
+<h2>Name : <%= @product.name %></h2>
+<h4>Catalog : <%= Catalog.find(@product.catalog_id).name %></h4>
+<p>Price : <%= @product.price %></p>
+<p>Description : <%= @product.description %> </p>
+
+<p><div class="btn btn-inverse" ><%= link_to "Add to Cart",edit_cart_path(@product) %></div></p>

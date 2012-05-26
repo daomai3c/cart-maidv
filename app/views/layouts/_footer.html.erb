@@ -1,0 +1,16 @@
+<footer class="footer">
+  <small>
+    <% if signed_in? %>
+        <% if current_user.admin?  %>
+            <%=link_to "Control Panel" , admin_path  %>
+        <% end %>
+    <% end %>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to "About",   about_path %></li>
+      <li><%= link_to "Contact", contact_path %></li>
+      <li><a href="http://news.railstutorial.org/">News</a></li>
+    </ul>
+  </nav>
+</footer>

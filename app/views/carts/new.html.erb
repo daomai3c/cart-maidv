@@ -1,0 +1,23 @@
+
+<% cart_number=session[:cart_number] %>
+<%= link_to "Back", carts_path %>
+<h1>Cart</h1>
+<table width="100%" border="0">
+  <tr>
+    <th width="45%" style="text-align: left;padding-left: 5px">Name</th>
+    <th width="10%">Number</th>
+    <th width="35%"></th>
+  </tr>
+  <div class='list-product'>
+    <% session[:cart].each do |product_id| %>
+        <tr>
+          <td style="padding: 5px"><%= link_to Product.find(product_id).name, product_path(product_id) %></td>
+          <td align="center"><%= cart_number[product_id] %></td>
+          <td></td>
+        </tr>
+    <% end %>
+  </div>
+</table>
+<p></p>
+
+<div class="btn btn-inverse"> <%= link_to "Save Order" , saveorder_path %></div>

@@ -1,0 +1,13 @@
+<%= form_for(@catalog , url: admin_catalogs_create_path) do |f| %>
+  <% if @catalog.errors.any? %>
+      <%= render 'shared/error_messages', object: f.object %>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<h1>Add Product to <%= Catalog.find(params[:id]).name %>  </h1>
+<div class="row">
+  <div style="margin-left: 20px;">
+<%= form_for(@product , url: 'create') do |f| %>
+    <% if @product.errors.any? %>
+        <%= render 'shared/error_messages', object: f.object %>
+    <% end %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <%= f.hidden_field :catalog_id , :value => params[:id] %>
+    <%=  f.submit %>
+<% end %>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<h1>List Order</h1>
+<table width="100%" border="1">
+  <tr>
+    <th width="20%" align="left">Customer</th>
+    <th width="50%" align="left">
+      <table width="100%">
+        <tr>
+          <th width="25%" style="border-right: 1px solid ">Product</th>
+          <th width="25%">Number</th>
+        </tr>
+      </table>
+    </th>
+    <th width="30%" align="left">Date</th>
+    <th></th>
+  </tr>
+  <% @orders.each do |order| %>
+     <tr>
+       <td ><%= link_to User.find(order.user_id).name,User.find(order.user_id) %></td>
+
+       <% order_products=OrderProduct.find_all_by_order_id(order.id) %>
+       <td >
+         <table width="100%">
+           <% order_products.each do |order_product| %>
+           <tr>
+             <td width="25%" style="border-right: 1px solid "><%= link_to Product.find(order_product.product_id).name , Product.find(order_product.product_id)%></td>
+             <td width="25%"><%= order_product.number_product  %></td>
+           </tr>
+           <% end %>
+         </table>
+       </td>
+       <td><%= order.created_at %></td>
+       <td><%= link_to "", admin_order_path(order.id), confirm: 'Are you sure?',class: "icon-remove-sign"  ,method: :delete %></td>
+     </tr>
+  <% end %>
+</table>
